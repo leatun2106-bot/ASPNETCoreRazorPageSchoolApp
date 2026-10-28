@@ -1,0 +1,28 @@
+@page
+@model SchoolManagement.Pages.Students.CreateModel
+@{
+    ViewData["Title"] = "Create Student";
+}
+<h1>Create Student</h1>
+<div class="card"><div class="card-body">
+<form method="post">
+<div class="mb-3">
+    <label asp-for="Item.FirstName" class="form-label">First name</label>
+    <input asp-for="Item.FirstName" class="form-control" type="text" />
+    <span asp-validation-for="Item.FirstName" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Item.LastName" class="form-label">Last name</label>
+    <input asp-for="Item.LastName" class="form-control" type="text" />
+    <span asp-validation-for="Item.LastName" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Item.EnrollmentDate" class="form-label">Enrollment date</label>
+    <input asp-for="Item.EnrollmentDate" class="form-control" type="date" />
+    <span asp-validation-for="Item.EnrollmentDate" class="text-danger"></span>
+</div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-page="Index" class="btn btn-outline-secondary">Back to List</a>
+</form>
+</div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

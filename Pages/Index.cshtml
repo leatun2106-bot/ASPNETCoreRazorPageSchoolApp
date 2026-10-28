@@ -1,0 +1,28 @@
+@page
+@model SchoolManagement.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+    <h1 class="display-5 fw-bold">School Management System</h1>
+    <p class="col-md-9 fs-5">Manage students, courses, instructors, enrollments, and departments using ASP.NET Core Razor Pages and Entity Framework Core.</p>
+    <p>Select a section below to view and manage records in the existing SchoolDB database.</p>
+</div>
+<div class="row g-3">
+    @foreach (var item in new[] {
+        new { Name = "Students", Description = "Manage student profiles.", Url = "/Students/Index" },
+        new { Name = "Courses", Description = "Manage courses and departments.", Url = "/Courses/Index" },
+        new { Name = "Instructors", Description = "Manage instructor records.", Url = "/Instructors/Index" },
+        new { Name = "Enrollments", Description = "Manage course registrations and grades.", Url = "/Enrollments/Index" },
+        new { Name = "Departments", Description = "Manage departments and budgets.", Url = "/Departments/Index" }
+    })
+    {
+        <div class="col-md-4">
+            <div class="card h-100"><div class="card-body">
+                <h5 class="card-title">@item.Name</h5>
+                <p class="card-text">@item.Description</p>
+                <a class="btn btn-primary" href="@item.Url">Open @item.Name</a>
+            </div></div>
+        </div>
+    }
+</div>

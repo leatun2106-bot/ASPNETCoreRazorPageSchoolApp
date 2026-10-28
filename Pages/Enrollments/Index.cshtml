@@ -1,0 +1,25 @@
+@page
+@model SchoolManagement.Pages.Enrollments.IndexModel
+@{
+    ViewData["Title"] = "Enrollments";
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div><h1>Enrollments</h1><p class="text-muted mb-0">View and manage enrollments records.</p></div>
+    <a class="btn btn-primary" asp-page="Create">+ Create New</a>
+</div>
+<div class="card"><div class="card-body table-responsive">
+<table class="table table-hover align-middle">
+    <thead><tr><th>Enrollment ID</th><th>Course</th><th>Student</th><th>Grade</th><th>Actions</th></tr></thead>
+    <tbody>
+    @foreach (var item in Model.Items)
+    {
+        <tr><td>@item.EnrollmentID</td><td>@item.Course != null ? item.Course.Title : "(missing course)"</td><td>@item.Student != null ? item.Student.FirstName + " " + item.Student.LastName : "(missing student)"</td><td>@item.Grade.HasValue ? item.Grade.Value.ToString("0.00") : "—"</td><td class="text-nowrap">
+            <a asp-page="Details" asp-route-id="@item.EnrollmentID">Details</a> |
+            <a asp-page="Edit" asp-route-id="@item.EnrollmentID">Edit</a> |
+            <a asp-page="Delete" asp-route-id="@item.EnrollmentID">Delete</a>
+        </td></tr>
+    }
+    </tbody>
+</table>
+@if (Model.Items.Count == 0) { <p class="text-muted mb-0">No records found.</p> }
+</div></div>

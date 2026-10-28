@@ -1,0 +1,16 @@
+@page "{id:int}"
+@model SchoolManagement.Pages.Enrollments.DetailsModel
+@{
+    ViewData["Title"] = "Enrollment Details";
+}
+<h1>Enrollment Details</h1>
+<div class="card"><div class="card-body">
+    <dl class="row">
+    <dt class="col-sm-3">EnrollmentID</dt><dd class="col-sm-9">@Model.Item.EnrollmentID</dd>
+    <dt class="col-sm-3">Course</dt><dd class="col-sm-9">@Model.Item.Course?.Title ?? "(missing course)"</dd>
+    <dt class="col-sm-3">Student</dt><dd class="col-sm-9">@(Model.Item.Student?.FirstName ?? "") + " " + (Model.Item.Student?.LastName ?? "")</dd>
+    <dt class="col-sm-3">Grade</dt><dd class="col-sm-9">@Model.Item.Grade.HasValue ? Model.Item.Grade.Value.ToString("0.00") : "—"</dd>
+    </dl>
+    <a asp-page="Edit" asp-route-id="@Model.Item.EnrollmentID" class="btn btn-primary">Edit</a>
+    <a asp-page="Index" class="btn btn-outline-secondary">Back to List</a>
+</div></div>

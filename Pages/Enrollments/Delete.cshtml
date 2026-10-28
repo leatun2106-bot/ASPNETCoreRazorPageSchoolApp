@@ -1,0 +1,21 @@
+@page "{id:int}"
+@model SchoolManagement.Pages.Enrollments.DeleteModel
+@{
+    ViewData["Title"] = "Delete Enrollment";
+}
+<h1>Delete Enrollment</h1>
+<div class="alert alert-warning">Are you sure you want to delete this record? Related records may prevent deletion.</div>
+<div class="card"><div class="card-body">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <dl class="row">
+    <dt class="col-sm-3">EnrollmentID</dt><dd class="col-sm-9">@Model.Item.EnrollmentID</dd>
+    <dt class="col-sm-3">Course</dt><dd class="col-sm-9">@Model.Item.Course?.Title ?? "(missing course)"</dd>
+    <dt class="col-sm-3">Student</dt><dd class="col-sm-9">@(Model.Item.Student?.FirstName ?? "") + " " + (Model.Item.Student?.LastName ?? "")</dd>
+    <dt class="col-sm-3">Grade</dt><dd class="col-sm-9">@Model.Item.Grade.HasValue ? Model.Item.Grade.Value.ToString("0.00") : "—"</dd>
+    </dl>
+    <form method="post">
+        <input type="hidden" name="id" value="@Model.Item.EnrollmentID" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-page="Index" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+</div></div>

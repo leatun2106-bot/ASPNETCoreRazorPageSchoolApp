@@ -1,0 +1,20 @@
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using SchoolManagement.Data;
+using SchoolManagement.Models;
+
+namespace SchoolManagement.Pages.Courses;
+
+public class IndexModel : PageModel
+{
+    private readonly SchoolContext _context;
+    public IndexModel(SchoolContext context) => _context = context;
+    public IList<Course> Items { get; set; } = new List<Course>();
+
+    public async Task OnGetAsync()
+    {
+        var query = _context.Courses.AsQueryable();
+        query = query.Include(x => x.Department);
+        Items = await query.AsNoTracking().ToListAsync();
+    }
+}

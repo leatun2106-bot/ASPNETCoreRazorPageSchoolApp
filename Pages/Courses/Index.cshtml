@@ -1,0 +1,25 @@
+@page
+@model SchoolManagement.Pages.Courses.IndexModel
+@{
+    ViewData["Title"] = "Courses";
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div><h1>Courses</h1><p class="text-muted mb-0">View and manage courses records.</p></div>
+    <a class="btn btn-primary" asp-page="Create">+ Create New</a>
+</div>
+<div class="card"><div class="card-body table-responsive">
+<table class="table table-hover align-middle">
+    <thead><tr><th>Course ID</th><th>Title</th><th>Credits</th><th>Department</th><th>Actions</th></tr></thead>
+    <tbody>
+    @foreach (var item in Model.Items)
+    {
+        <tr><td>@item.CourseID</td><td>@item.Title</td><td>@item.Credits</td><td>@item.Department != null ? item.Department.Name : "(missing department)"</td><td class="text-nowrap">
+            <a asp-page="Details" asp-route-id="@item.CourseID">Details</a> |
+            <a asp-page="Edit" asp-route-id="@item.CourseID">Edit</a> |
+            <a asp-page="Delete" asp-route-id="@item.CourseID">Delete</a>
+        </td></tr>
+    }
+    </tbody>
+</table>
+@if (Model.Items.Count == 0) { <p class="text-muted mb-0">No records found.</p> }
+</div></div>

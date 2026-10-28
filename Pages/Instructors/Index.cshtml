@@ -1,0 +1,25 @@
+@page
+@model SchoolManagement.Pages.Instructors.IndexModel
+@{
+    ViewData["Title"] = "Instructors";
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div><h1>Instructors</h1><p class="text-muted mb-0">View and manage instructors records.</p></div>
+    <a class="btn btn-primary" asp-page="Create">+ Create New</a>
+</div>
+<div class="card"><div class="card-body table-responsive">
+<table class="table table-hover align-middle">
+    <thead><tr><th>Instructor ID</th><th>First name</th><th>Last name</th><th>Hire date</th><th>Actions</th></tr></thead>
+    <tbody>
+    @foreach (var item in Model.Items)
+    {
+        <tr><td>@item.InstructorID</td><td>@item.FirstName</td><td>@item.LastName</td><td>@item.HireDate.ToString("yyyy-MM-dd")</td><td class="text-nowrap">
+            <a asp-page="Details" asp-route-id="@item.InstructorID">Details</a> |
+            <a asp-page="Edit" asp-route-id="@item.InstructorID">Edit</a> |
+            <a asp-page="Delete" asp-route-id="@item.InstructorID">Delete</a>
+        </td></tr>
+    }
+    </tbody>
+</table>
+@if (Model.Items.Count == 0) { <p class="text-muted mb-0">No records found.</p> }
+</div></div>

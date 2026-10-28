@@ -1,0 +1,16 @@
+@page "{id:int}"
+@model SchoolManagement.Pages.Departments.DetailsModel
+@{
+    ViewData["Title"] = "Department Details";
+}
+<h1>Department Details</h1>
+<div class="card"><div class="card-body">
+    <dl class="row">
+    <dt class="col-sm-3">DepartmentID</dt><dd class="col-sm-9">@Model.Item.DepartmentID</dd>
+    <dt class="col-sm-3">Name</dt><dd class="col-sm-9">@Model.Item.Name</dd>
+    <dt class="col-sm-3">Budget</dt><dd class="col-sm-9">@Model.Item.Budget.ToString("N2")</dd>
+    <dt class="col-sm-3">Start date</dt><dd class="col-sm-9">@Model.Item.StartDate.ToString("yyyy-MM-dd")</dd>
+    </dl>
+    <a asp-page="Edit" asp-route-id="@Model.Item.DepartmentID" class="btn btn-primary">Edit</a>
+    <a asp-page="Index" class="btn btn-outline-secondary">Back to List</a>
+</div></div>
